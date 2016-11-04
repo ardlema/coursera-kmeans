@@ -1,7 +1,5 @@
 # K-Means
 
-You can find the starting files for this assignment here.
-
 In this assignment, you will implement the K-means algorithm for cluster detection, which is used to partition n vectors into k clusters. Here, vectors are separated into clusters based on their mutual similarity -- vectors that are closer to each other in space are more likely to end up in the same cluster, and the distant vectors are likely to be in different clusters. K-means has many applications: it is used in data mining, image filtering and signal processing.
 
 Here is a simple example -- let's say that we have a set of vectors in 2D space, as shown in the following figure:

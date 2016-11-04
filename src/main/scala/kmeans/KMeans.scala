@@ -1,10 +1,10 @@
 package kmeans
 
+import org.scalameter._
+
 import scala.annotation.tailrec
 import scala.collection._
 import scala.util.Random
-import org.scalameter._
-import common._
 
 class KMeans {
 
@@ -43,10 +43,8 @@ class KMeans {
   }
 
   def classify(points: GenSeq[Point], means: GenSeq[Point]): GenMap[Point, GenSeq[Point]] = {
-    if (points.isEmpty) means.map(m => (m, GenSeq())).toMap
-    else {
-      points.map(p => (findClosest(p, means), p)).groupBy(_._1).map(e => (e._1, e._2.map(_._2)))
-    }
+    val pointsGroupByMeans = points.groupBy(findClosest(_, means))
+    means.map(mean => (mean, pointsGroupByMeans.getOrElse(mean, GenSeq()))).toMap
   }
 
   def findAverage(oldMean: Point, points: GenSeq[Point]): Point = if (points.length == 0) oldMean else {

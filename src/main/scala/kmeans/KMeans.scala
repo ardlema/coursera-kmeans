@@ -66,7 +66,7 @@ class KMeans {
   def converged(eta: Double)(oldMeans: GenSeq[Point], newMeans: GenSeq[Point]): Boolean = {
       oldMeans match {
         case Nil => true
-        case h :: tail if (h.squareDistance(newMeans.head) <= eta) => converged(eta)(tail, newMeans.tail)
+        case _ if (oldMeans.head.squareDistance(newMeans.head) <= eta) => converged(eta)(oldMeans.tail, newMeans.tail)
         case _ => false
       }
   }
